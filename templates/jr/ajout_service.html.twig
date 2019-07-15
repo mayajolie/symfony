@@ -1,0 +1,43 @@
+{% extends "base.html.twig" %}
+{% block body %}
+    <body>
+        
+        <section class="page-section clearfix">
+                <div class="card-body">
+                        <h1> <strong> Ajouter Un Service:</strong> </h1>
+                    </div>
+            <div class="container">
+                   
+                <div >
+                 <div class="card" id="mj">
+                        {{form_start(formeservice)}}
+
+                        <div class="card-body">
+                                
+                            <div class="form-group">
+                                    <label for="">Nom Service</label>
+                                    {{ form_widget(formeservice.libelle,{'attr':{'placeholder':"service"}}) }}
+                                  </div>                      
+                                <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">
+                                                {% if Mode %}
+                                                  Modifier
+                                                  {% else %}
+                                                      Ajouter 
+                                                {% endif %}
+                                                
+                                              </button>                            
+                                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+           
+            </div>
+        </section>
+    </body>
+
+{{ form_end(formeservice) }}
+
+{% endblock body %}

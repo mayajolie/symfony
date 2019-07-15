@@ -1,0 +1,57 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="card-body">
+        <h1>
+            <strong>Liste des Employer
+            </strong>
+        </h1>
+    </div>
+    <div>
+        <table class="table table-striped table-bordered" id="employer">
+            <thead>
+                <tr class="table-primary">
+                    <th scope="col">Matricule</th>
+                    <th scope="col">Nom</th>
+                    <th scope="col">Date de Naissance</th>
+                    <th scope="col">Salaire</th>
+                    <th scope="col">Service</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employer in employers %}
+                    <tr>
+                        <td>{{ employer.matricule }}</td>
+                        <td>{{ employer.nomComplet }}</td>
+                        <td>{{ employer.dateNaiss | date('d/m/Y')}}</td>
+                        <td>{{ employer.salaire }}</td>
+                        <td>{{ employer.service.libelle}}</td>
+                        <td>
+                            <a class="btn btn-success" href="/jr/{{employer.id}}/ajout">modifier</a>
+                        </td>
+                        <td>
+                            <a class="btn btn-danger" href="/jr/{{employer.id}}/delete">supprimer</a>
+                        </td>
+
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $('#employer').DataTable({
+                "language": {
+                    "lengthMenu": "Display _MENU_ records per page",
+                    "zeroRecords": "Nothing found - sorry",
+                    "info": "Showing page _PAGE_ of _PAGES_",
+                    "infoEmpty": "No records available",
+                    "infoFiltered": "(filtered from _MAX_ total records)"
+                }
+            });
+        });
+    </script>
+
+{% endblock %}
